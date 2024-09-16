@@ -21,6 +21,10 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'phonenumber',
+        'address',
+        'isAdmin',
+        'username',
     ];
 
     /**
@@ -41,4 +45,18 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function umkm()
+    {
+        return $this->hasMany(Umkm::class, 'user_id');
+    }
+    public function koperasi()
+    {
+        return $this->hasMany(Koperasi::class, 'user_id');
+    }
+
+    public function izin()
+    {
+        return $this->hasMany(Izin::class, 'user_id');
+    }
 }
